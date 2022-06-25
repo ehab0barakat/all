@@ -38,7 +38,7 @@ class ContactController extends Controller
 
 
 
-    public function store(Request $request)
+    public function store(Request $request )
     {
 
         $contact_Number = new Contact_Number();
@@ -58,8 +58,7 @@ class ContactController extends Controller
      */
     public function show($id)
     {
-        Contact_Number::where('mobile_num', $id)->delete();
-        return redirect()->route("contact.index"); ;
+        //
     }
 
     /**
@@ -70,8 +69,7 @@ class ContactController extends Controller
      */
     public function edit($id)
     {
-
-        return view("contact.edit"  , ["id" => $id]);
+        return view("contact.edit"  , ["id" => $id  , "contact" => Contact_Number::where("mobile_num",$id)->first() ]);
     }
 
     /**
@@ -99,9 +97,7 @@ class ContactController extends Controller
      */
     public function destroy($id)
     {
-        return "fghjk";
-        // dd($id);
-
-        // return redirect()->route("contact.index");
+        Contact_Number::where('mobile_num', $id)->delete();
+        return redirect()->route("contact.index"); ;
     }
 }

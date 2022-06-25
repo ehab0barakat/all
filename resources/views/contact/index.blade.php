@@ -27,7 +27,11 @@
 
           <td><a href="{{route('contact.edit' , $contact->mobile_num )}}" class="btn  btn-primary">Update</a></td>
 
-          <td><a href="{{route('contact.destroy' , $contact->mobile_num )}}" class="btn  btn-danger">Delete</a></td>
+          {!! Form::open(['route' => ['contact.destroy' , $contact->mobile_num ]  , "class" => "btn  btn-danger" , "method" => "delete"]) !!}
+
+          <td><button  class="btn  btn-danger">Delete</button></td>
+
+          {!! Form::close() !!}
 
 
         </tr>

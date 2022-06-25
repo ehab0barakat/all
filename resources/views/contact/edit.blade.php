@@ -2,10 +2,6 @@
 
 
 
-{{ <?php use App\Models\Contact_Number; ?>}}
-
-{{ $contact = Contact_Number::where("mobile_num",$id)->first()}}
-
 @section("content")
 
 {!! Form::open(['route' => ['contact.update' , $id ]  , "class" => "container" , "method" => "put"]) !!}

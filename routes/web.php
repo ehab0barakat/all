@@ -25,3 +25,4 @@ require __DIR__.'/auth.php';
 
 
 route::resource("contact","App\Http\Controllers\ContactController") ;
+
