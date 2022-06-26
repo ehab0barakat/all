@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Models\Contact_Number;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,5 +24,5 @@ Route::get('/dashboard', function () {
 require __DIR__.'/auth.php';
 
 
-route::resource("contact","App\Http\Controllers\ContactController") ;
+route::resource("contact","App\Http\Controllers\ContactController")->middleware(['auth']) ;
 

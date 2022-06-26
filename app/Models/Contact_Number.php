@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+use App\Models\Contact;
 
 class Contact_Number extends Model
 {
@@ -14,14 +15,16 @@ class Contact_Number extends Model
     protected $primaryKey ='contact_id' ;
 
 
-    public function Contact()
+    public function contact()
     {
         return $this->belongsTo(Contact::class);
     }
 
-    public function getRouteKeyName()
-    {
-    return "asdasd";
-}
+// * @return string
+
+    // public function getRouteKeyName()
+    // {
+    // return "asdasd";
+// }
 
 }

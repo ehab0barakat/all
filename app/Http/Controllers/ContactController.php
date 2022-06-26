@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth ;
 use App\Models\Contact ;
+use App\Models\User ;
 use App\Models\Contact_Number;
+use Illuminate\Database\Eloquent\Collection ;
+
 class ContactController extends Controller
 {
     /**
@@ -14,7 +17,11 @@ class ContactController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
+
+
     {   $id = auth()->user()->id;
+
+        // dd(auth()->user());
         return view("contact.index" ,  ["contacts_number" => Contact_Number::where("contact_id", $id)->get()]);
     }
 
@@ -41,11 +48,17 @@ class ContactController extends Controller
     public function store(Request $request )
     {
 
-        $contact_Number = new Contact_Number();
-        $contact_Number->contact_id = auth()->user()->id;
-        $contact_Number->mobile_num = $request->number ;
-        $contact_Number->address = $request->naddress ;
-        $contact_Number->save();
+        Contact::find(Auth::id())->number->create([
+            "contact_id" => auth()->user()->id ,
+            "mobile_num" => $request->number ,
+            "address" => $request->naddress
+        ]);
+
+        // $contact_Number = new Contact_Number();
+        // $contact_Number->contact_id = auth()->user()->id;
+        // $contact_Number->mobile_num = $request->number ;
+        // $contact_Number->address = $request->naddress ;
+        // $contact_Number->save();
 
         return redirect()->route("contact.index");
     }
