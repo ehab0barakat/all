@@ -4,7 +4,10 @@
 new post
 @endsection
 
-
+{{-- {{dd($errors);}} --}}
+@foreach ($errors->all() as $error)
+{{ $error  }}
+@endforeach
 
 @section("content")
 

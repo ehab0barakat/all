@@ -18,4 +18,10 @@ class Contact extends Model
     {
         return $this->hasMany(Contact_Number::class);
     }
+
+    public function user()
+    {
+        return $this->hasOne(User::class);
+
+    }
 }

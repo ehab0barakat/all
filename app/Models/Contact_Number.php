@@ -9,10 +9,17 @@ use App\Models\Contact;
 
 class Contact_Number extends Model
 {
+
+    public function getRouteKeyName()
+{
+    return "mobile_num";
+}
+
     use HasFactory;
 
     protected $table = 'contacts_mobiles';
     protected $primaryKey ='contact_id' ;
+    protected $fillable = ["contact_id", "mobile_num","address"];
 
 
     public function contact()
@@ -20,11 +27,9 @@ class Contact_Number extends Model
         return $this->belongsTo(Contact::class);
     }
 
-// * @return string
-
-    // public function getRouteKeyName()
-    // {
-    // return "asdasd";
-// }
+public function contact_auth()
+{
+    return $this->belongsTo(User::class , "contact_id");
+}
 
 }

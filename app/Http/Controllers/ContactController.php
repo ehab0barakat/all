@@ -9,6 +9,9 @@ use App\Models\User ;
 use App\Models\Contact_Number;
 use Illuminate\Database\Eloquent\Collection ;
 
+use Illuminate\Support\Facades\Validator;
+
+
 class ContactController extends Controller
 {
     /**
@@ -17,12 +20,8 @@ class ContactController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-
-
-    {   $id = auth()->user()->id;
-
-        // dd(auth()->user());
-        return view("contact.index" ,  ["contacts_number" => Contact_Number::where("contact_id", $id)->get()]);
+    {
+        return view("contact.index" ,  ["contacts_number" => auth::user()->contact->number ]);
     }
 
 
@@ -47,18 +46,16 @@ class ContactController extends Controller
 
     public function store(Request $request )
     {
+        $request->validate([
+            "number" => ["required" , "numeric" , "regex:/^(010|011|012)/"  , 'unique:App\Models\Contact_Number,mobile_num' , "digits:11" ]
+        ]);
 
-        Contact::find(Auth::id())->number->create([
-            "contact_id" => auth()->user()->id ,
+
+        auth::user()->contact->number()->create([
+            "contact_id" => auth::id() ,
             "mobile_num" => $request->number ,
             "address" => $request->naddress
         ]);
-
-        // $contact_Number = new Contact_Number();
-        // $contact_Number->contact_id = auth()->user()->id;
-        // $contact_Number->mobile_num = $request->number ;
-        // $contact_Number->address = $request->naddress ;
-        // $contact_Number->save();
 
         return redirect()->route("contact.index");
     }
@@ -82,7 +79,7 @@ class ContactController extends Controller
      */
     public function edit($id)
     {
-        return view("contact.edit"  , ["id" => $id  , "contact" => Contact_Number::where("mobile_num",$id)->first() ]);
+        return view("contact.edit"  , ["contact" => Contact_Number::where("mobile_num",$id)->first() ]);
     }
 
     /**
@@ -94,7 +91,8 @@ class ContactController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $new = Contact_Number::where("mobile_num",$id)->update([
+
+        Contact_Number::where("mobile_num",$id)->update([
             "mobile_num" =>$request->number ,
             "address" => $request->naddress
         ]);
