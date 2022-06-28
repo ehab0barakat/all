@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Policies;
 
 
-class ContactNumberController extends Controller
+class ContactController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -80,7 +80,7 @@ class ContactNumberController extends Controller
     public function edit(Contact_Number $contact_number)
     {
 
-        $this->authorize('update', $contact_number);
+        // $this->authorize('update', $contact_number);
 
         return view("contact.edit"  , ["contact" => $contact_number]);
     }
