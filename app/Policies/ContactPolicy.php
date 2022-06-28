@@ -6,7 +6,7 @@ use App\Models\Contact_Number;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class ContactNumberPolicy
+class ContactPolicy
 {
     use HandlesAuthorization;
 
@@ -41,7 +41,7 @@ class ContactNumberPolicy
      */
     public function create(User $user)
     {
-        //
+        // return $user->id == $contact_number->contact_id ;
     }
 
     /**
@@ -53,8 +53,7 @@ class ContactNumberPolicy
      */
     public function update(User $user, Contact_Number $contact_number)
     {
-        dd($user->id);
-        return auth::id() == $contact_number->contact_id ;
+        return $user->id == $contact_number->contact_id ;
     }
 
     /**

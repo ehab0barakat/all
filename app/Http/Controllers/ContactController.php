@@ -33,6 +33,7 @@ class ContactController extends Controller
      */
     public function create()
     {
+        // $this->authorize('create', Contact_Number::class);
         return view("contact.create") ;
     }
 
@@ -80,7 +81,7 @@ class ContactController extends Controller
     public function edit(Contact_Number $contact_number)
     {
 
-        // $this->authorize('update', $contact_number);
+        $this->authorize('update', $contact_number);
 
         return view("contact.edit"  , ["contact" => $contact_number]);
     }
