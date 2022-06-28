@@ -6,13 +6,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 use App\Models\Contact;
+use App\Models\Contact_Number;
 
 class Contact_Number extends Model
 {
 
     public function getRouteKeyName()
 {
-    return "mobile_num";
+    return 'mobile_num';
 }
 
     use HasFactory;

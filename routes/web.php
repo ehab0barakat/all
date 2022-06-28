@@ -24,5 +24,4 @@ Route::get('/dashboard', function () {
 require __DIR__.'/auth.php';
 
 
-route::resource("contact","App\Http\Controllers\ContactController")->middleware(['auth']) ;
-
+route::resource("contact_number","App\Http\Controllers\ContactController");

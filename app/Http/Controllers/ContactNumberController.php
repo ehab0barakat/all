@@ -10,9 +10,10 @@ use App\Models\Contact_Number;
 use Illuminate\Database\Eloquent\Collection ;
 
 use Illuminate\Support\Facades\Validator;
+use App\Policies;
 
 
-class ContactController extends Controller
+class ContactNumberController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -44,12 +45,11 @@ class ContactController extends Controller
 
 
 
-    public function store(Request $request )
+    public function store(Request $request  )
     {
         $request->validate([
             "number" => ["required" , "numeric" , "regex:/^(010|011|012)/"  , 'unique:App\Models\Contact_Number,mobile_num' , "digits:11" ]
         ]);
-
 
         auth::user()->contact->number()->create([
             "contact_id" => auth::id() ,
@@ -57,7 +57,7 @@ class ContactController extends Controller
             "address" => $request->naddress
         ]);
 
-        return redirect()->route("contact.index");
+        return redirect()->route("contact_number.index");
     }
 
     /**
@@ -77,9 +77,12 @@ class ContactController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Contact_Number $contact_number)
     {
-        return view("contact.edit"  , ["contact" => Contact_Number::where("mobile_num",$id)->first() ]);
+
+        $this->authorize('update', $contact_number);
+
+        return view("contact.edit"  , ["contact" => $contact_number]);
     }
 
     /**
@@ -89,14 +92,14 @@ class ContactController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Contact_Number $contact_number)
     {
 
-        Contact_Number::where("mobile_num",$id)->update([
+        $contact_number->where("mobile_num",$contact_number->mobile_num)->update([
             "mobile_num" =>$request->number ,
             "address" => $request->naddress
         ]);
-        return redirect()->route("contact.index");
+        return redirect()->route("contact_number.index");
 
     }
 
@@ -106,9 +109,9 @@ class ContactController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Contact_Number $contact_number)
     {
-        Contact_Number::where('mobile_num', $id)->delete();
-        return redirect()->route("contact.index"); ;
+        $contact_number->where("mobile_num",$contact_number->mobile_num)->delete();
+        return redirect()->route("contact_number.index"); ;
     }
 }

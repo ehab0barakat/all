@@ -7,7 +7,7 @@
 
 
 
-{!! Form::open(['route' => ['contact.update' , $contact->mobile_num ]  , "class" => "container" , "method" => "put"]) !!}
+{!! Form::open(['route' => ['contact_number.update' , $contact->mobile_num ]  , "class" => "container" , "method" => "put"]) !!}
 
     <div class="mb-3">
       <label for="exampleInputEmail1" class="form-label">address For Number</label>

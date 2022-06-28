@@ -27,8 +27,8 @@
                 <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 mb-5 ">
                    {{-- @yield("header") --}}
 
-                    <a href="{{ route('contact.create')}}" class="px-3" target="_SELF" > New Post</a>
-                    <a href="{{ route('contact.store') }}" class="px-3" target="_SELF" > Show Posts</a>
+                    <a href="{{ route('contact_number.create')}}" class="px-3" target="_SELF" > New Post</a>
+                    <a href="{{ route('contact_number.store') }}" class="px-3" target="_SELF" > Show Posts</a>
                 </div>
             </header>
 

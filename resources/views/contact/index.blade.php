@@ -25,9 +25,9 @@
           <td>{{$contact->mobile_num}}</td>
           <td>{{$contact->address}}</td>
 
-          <td><a href="{{route('contact.edit' , $contact->mobile_num )}}" class="btn  btn-primary">Update</a></td>
+          <td><a href="{{route('contact_number.edit' , $contact->mobile_num )}}" class="btn  btn-primary">Update</a></td>
 
-          {!! Form::open(['route' => ['contact.destroy' , $contact->mobile_num ]  , "class" => "btn  btn-danger" , "method" => "delete"]) !!}
+          {!! Form::open(['route' => ['contact_number.destroy' , $contact->mobile_num ]  , "class" => "btn  btn-danger" , "method" => "delete"]) !!}
 
           <td><button  class="btn  btn-danger">Delete</button></td>
 

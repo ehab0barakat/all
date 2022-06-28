@@ -11,7 +11,7 @@ new post
 
 @section("content")
 
-{!! Form::open(['route' => 'contact.store' , "class" => "container"]) !!}
+{!! Form::open(['route' => 'contact_number.store' , "class" => "container"]) !!}
 
     <div class="mb-3">
       <label for="exampleInputEmail1" class="form-label">address For Number</label>

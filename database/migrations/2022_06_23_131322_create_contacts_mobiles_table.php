@@ -15,9 +15,9 @@ class CreateContactsMobilesTable extends Migration
     {
         Schema::create('contacts_mobiles', function (Blueprint $table) {
             $table->integer("contact_id");
-            $table->foreign("contact_id")->references("id")->on("contacts");
-            $table->string("mobile_num" , 14);
-            $table->primary(["contact_id","mobile_num"]);
+            $table->foreign("contact_id")->references("id")->on("users");
+            $table->string("mobile_num" , 14)->unique();
+            $table->primary(["contact_id"]);
         });
     }
 
