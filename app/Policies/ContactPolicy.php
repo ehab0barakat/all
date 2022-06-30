@@ -41,7 +41,7 @@ class ContactPolicy
      */
     public function create(User $user)
     {
-        // return $user->id == $contact_number->contact_id ;
+        return $user->id ? true : false ;
     }
 
     /**
